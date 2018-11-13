@@ -12,6 +12,9 @@ public class TestPayment {
 	public TestPayment() {
 		this.operations = new ArrayList<Payment>();
 	}
+	
+//-------------------------------------------------------------------------------
+// METHODS		
 
 	public boolean operationStatus(Payment payment) {
 		if(payment instanceof Credit) {
@@ -21,13 +24,40 @@ public class TestPayment {
 		
 		if(payment instanceof Cheque){
 			Cheque check = (Cheque) payment;
-			return check.authorized();
+			return check.authorized(amountInBank);
 		}
 		
 		if(payment instanceof Cash) {
 			return true;
 		}
-		
 		return false;
 	}
+	
+	public void updateAmountInBank(Integer amount) {
+		this.setAmountInBank(this.getAmountInBank() - amount);
+	}
+	
+	public Integer change() {
+		return this.getAmountInBank();
+	}
+
+//-------------------------------------------------------------------------------
+// GETTERS & SETTERS
+	
+	public ArrayList<Payment> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(ArrayList<Payment> operations) {
+		this.operations = operations;
+	}
+
+	public Integer getAmountInBank() {
+		return amountInBank;
+	}
+
+	public void setAmountInBank(Integer amountInBank) {
+		this.amountInBank = amountInBank;
+	}	
+	
 }

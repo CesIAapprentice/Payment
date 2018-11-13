@@ -16,8 +16,11 @@ public class Cheque extends Payment {
 //-------------------------------------------------------------------------------
 // METHODS
 	
-	public boolean authorized() {
-		return false;
+	public boolean authorized(Integer amountInBank) {
+		if (this.getAmount() > amountInBank) {
+			return false;
+		}
+		return true;
 	}
 		
 //-------------------------------------------------------------------------------
